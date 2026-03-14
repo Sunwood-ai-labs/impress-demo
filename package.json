@@ -5,6 +5,7 @@
   "description": "impress.js slide deck for draw-io-skill v0.1.0",
   "scripts": {
     "start": "http-server . -p 4173 -c-1",
+    "start:draw-io-skill": "http-server . -p 4173 -c-1",
     "check": "node -e \"console.log('Static slide deck: no automated checks configured.')\""
   },
   "dependencies": {
@@ -15,4 +16,3 @@
     "playwright": "^1.58.2"
   }
 }
-

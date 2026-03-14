@@ -1,6 +1,11 @@
 # impress-demo
 
-`draw-io-skill` v0.1.0 を紹介する `impress.js` スライドです。
+`slide/` 配下にスライドプロジェクトをまとめていくためのリポジトリです。
+
+## 構成
+
+- `slide/draw-io-skill/`
+  - `draw-io-skill` v0.1.0 を紹介する `impress.js` デッキ
 
 ## 使い方
 
@@ -9,10 +14,12 @@ npm install
 npm start
 ```
 
-ブラウザで `http://127.0.0.1:4173` を開くとスライドを確認できます。
+サーバー起動後、ブラウザで各プロジェクトのパスを開きます。
 
-## 操作
+- `http://127.0.0.1:4173/slide/draw-io-skill/`
 
-- `Space`
-- `←` / `→`
-- `Tab`
+## メモ
+
+- 依存関係はルートの `package.json` でまとめて管理します
+- スライドごとの説明は各プロジェクト配下の `README.md` に置きます
+
