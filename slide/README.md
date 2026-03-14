@@ -5,3 +5,4 @@
 ## Projects
 
 - `draw-io-skill`
+- `draw-io-skill-3d`

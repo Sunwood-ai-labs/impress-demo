@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>draw-io-skill v0.1.0 解説スライド</title>
+    <meta
+      name="description"
+      content="AIエージェントが図のダメ出しを受けて自分で直す draw-io-skill v0.1.0 を解説する impress.js スライド"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=M+PLUS+1p:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="impress-not-supported">
+    <div class="fallback-message">
+      <p>このスライドは <strong>impress.js</strong> 対応ブラウザ向けです。</p>
+      <p>最新版の Chrome / Edge / Safari で開いてください。</p>
+    </div>
+
+    <div id="hud" aria-hidden="true">
+      <div class="hud-chip">
+        <span class="hud-label">SECTION</span>
+        <strong data-role="current-title">タイトル</strong>
+      </div>
+      <div class="hud-chip hud-chip-right">
+        <strong data-role="counter">1 / 11</strong>
+        <span class="hud-label">Space / ← → / Tab</span>
+      </div>
+    </div>
+
+    <div id="impress" data-transition-duration="1400" data-perspective="1800">
+      <section
+        id="cover"
+        class="step hero"
+        data-x="0"
+        data-y="0"
+        data-z="0"
+        data-rotate-x="0"
+        data-rotate-y="0"
+        data-scale="1"
+        data-title="タイトル"
+      >
+        <div class="hero-grid">
+          <div>
+            <p class="eyebrow">impress.js deck / draw-io-skill v0.1.0</p>
+            <h1>
+              AIエージェントが<br />
+              「図のダメ出し」を受けて<br />
+              自分で直す！
+            </h1>
+            <p class="lead">`draw-io-skill` v0.1.0 解説</p>
+          </div>
+          <aside class="hero-stack">
+            <div class="callout warning">
+              <span class="callout-title">読む前に</span>
+              <p>この記事ベースの内容は <strong>2026年3月時点</strong> の情報です。</p>
+              <p><code>draw-io-skill</code> は <strong>v0.1.0</strong> が初の公開リリースです。</p>
+            </div>
+            <div class="meta-pills">
+              <span class="pill">AI Coding Agent</span>
+              <span class="pill">draw.io</span>
+              <span class="pill">Feedback Loop</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section
+        id="summary"
+        class="step"
+        data-x="1800"
+        data-y="-360"
+        data-z="-520"
+        data-rotate="6"
+        data-rotate-y="18"
+        data-scale="0.92"
+        data-title="ざっくり言うと"
+      >
+        <p class="eyebrow">Quick Summary</p>
+        <h2>ざっくり言うと</h2>
+        <div class="cards-grid three">
+          <article class="card accent-a">
+            <span class="card-index">01</span>
+            <h3>AI が draw.io を扱える</h3>
+            <p>
+              Claude Code や OpenAI Codex のような AI コーディングエージェントが、
+              <strong>図の作成・編集・出力</strong>まで自律的にこなせます。
+            </p>
+          </article>
+          <article class="card accent-b">
+            <span class="card-index">02</span>
+            <h3>最大の特徴は自己修正ループ</h3>
+            <p>
+              リンターが「ここがおかしい」と検知し、その結果を読んだエージェントが
+              <strong>自分で図を直す</strong>ところまでつながっています。
+            </p>
+          </article>
+          <article class="card accent-c">
+            <span class="card-index">03</span>
+            <h3>見落としがちな崩れも拾える</h3>
+            <p>
+              日本語テキストのはみ出し、矢印の交差や枠線重なりなど、
+              <strong>人間でも見落としやすい問題</strong>を自動で検知できます。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section
+        id="what-is"
+        class="step"
+        data-x="3600"
+        data-y="280"
+        data-z="420"
+        data-rotate="-8"
+        data-rotate-x="7"
+        data-rotate-y="-22"
+        data-scale="0.98"
+        data-title="draw-io-skill とは"
+      >
+        <p class="eyebrow">What Is It?</p>
+        <h2><code>draw-io-skill</code> ってなに？</h2>
+        <div class="split">
+          <div class="panel">
+            <h3>背景にある悩み</h3>
+            <ul class="feature-list">
+              <li>設計書に図がほしい</li>
+              <li>でも draw.io を毎回手で描くのは面倒</li>
+              <li>AI に任せても品質が不安</li>
+            </ul>
+            <p class="body-text">
+              そこで登場するのが、AI コーディングエージェントに draw.io を使わせるための
+              <strong>「取扱説明書＋ツールセット」</strong>です。
+            </p>
+          </div>
+          <div class="panel tone">
+            <h3>たとえるなら</h3>
+            <p class="quote">
+              draw.io を毎回手で操作するのは、<br />
+              「コードを毎回テキストエディタだけで書く」ようなもの。
+            </p>
+            <p class="body-text">
+              <code>draw-io-skill</code> は、AI に
+              <strong>「draw.io の正しい使い方のルールブック」</strong>を渡す仕組みです。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="skill"
+        class="step"
+        data-x="5400"
+        data-y="-160"
+        data-z="1100"
+        data-rotate="10"
+        data-rotate-x="-8"
+        data-rotate-y="24"
+        data-scale="0.92"
+        data-title="Skill の仕組み"
+      >
+        <p class="eyebrow">Point 1</p>
+        <h2>まず「Skill」の仕組みが土台</h2>
+        <div class="split">
+          <div class="panel">
+            <h3>Skill とは</h3>
+            <p class="body-text">
+              Claude Code や OpenAI Codex では、作業前に
+              <code>SKILL.md</code> を読み込ませることで、
+              <strong>「この作業ではこう動いてね」</strong>という指示を共有できます。
+            </p>
+            <p class="body-text">
+              つまり Skill は、AI に正しい作業手順を覚えさせる
+              <strong>再利用可能なワークフロー</strong>です。
+            </p>
+          </div>
+          <div class="panel">
+            <h3><code>draw-io-skill</code> の中身</h3>
+            <div class="stack-list">
+              <div class="stack-item">
+                <strong><code>SKILL.md</code></strong>
+                <span>図をどう作るかの指示書</span>
+              </div>
+              <div class="stack-item">
+                <strong><code>scripts/</code></strong>
+                <span>エクスポートや品質チェックの実行ツール</span>
+              </div>
+              <div class="stack-item">
+                <strong><code>fixtures/</code></strong>
+                <span>動作確認に使えるサンプル群</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="workflow"
+        class="step"
+        data-x="7200"
+        data-y="520"
+        data-z="180"
+        data-rotate="-10"
+        data-rotate-y="-28"
+        data-scale="0.94"
+        data-title="先行研究の統合"
+      >
+        <p class="eyebrow">Point 2</p>
+        <h2>2つの先行アプローチを統合したワークフロー</h2>
+        <div class="merge-board">
+          <article class="source-card">
+            <span class="pill light">参照元</span>
+            <h3><code>jgraph/drawio-mcp</code></h3>
+            <p>draw.io のネイティブ操作とエクスポートの慣習を取り込む。</p>
+          </article>
+          <div class="merge-plus">+</div>
+          <article class="source-card">
+            <span class="pill light">参照元</span>
+            <h3><code>softaworks/agent-toolkit</code></h3>
+            <p>XML レイアウト設計の指針を取り込む。</p>
+          </article>
+          <div class="merge-arrow">→</div>
+          <article class="source-card final">
+            <span class="pill">統合結果</span>
+            <h3><code>draw-io-skill</code></h3>
+            <p>どちらか一方ではなく、<strong>「いいとこどり」</strong>で実用的な図作成フローをつくる。</p>
+          </article>
+        </div>
+        <div class="stats-row">
+          <div class="stat-card">
+            <strong>作成</strong>
+            <span>.drawio を生成・編集</span>
+          </div>
+          <div class="stat-card">
+            <strong>出力</strong>
+            <span>PNG / SVG / PDF / JPG</span>
+          </div>
+          <div class="stat-card">
+            <strong>検査</strong>
+            <span>重なり・はみ出しを自動チェック</span>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="export"
+        class="step"
+        data-x="9000"
+        data-y="-420"
+        data-z="-760"
+        data-rotate="12"
+        data-rotate-x="10"
+        data-rotate-y="30"
+        data-scale="1.02"
+        data-title="export-drawio.mjs"
+      >
+        <p class="eyebrow">Point 3</p>
+        <h2><code>export-drawio.mjs</code> の役割</h2>
+        <div class="split">
+          <div class="panel">
+            <p class="body-text">
+              <code>scripts/export-drawio.mjs</code> は、draw.io のエクスポート機能を
+              <strong>Windows / macOS / Linux</strong> で共通的に扱うためのラッパーです。
+            </p>
+            <ul class="feature-list compact">
+              <li><code>--output</code> の拡張子で形式を自動判定</li>
+              <li>PNG は透過背景・2倍解像度・10px ボーダーが既定</li>
+              <li>PNG / SVG / PDF / JPG を一貫した手順で出力</li>
+            </ul>
+          </div>
+          <div class="panel tone">
+            <h3>地味に大きいポイント</h3>
+            <p class="quote">
+              エクスポートした画像に元の XML を埋め込むので、<br />
+              画像にしたあとでも draw.io で再編集しやすい。
+            </p>
+            <p class="body-text">
+              つまり「PNG にしたら元に戻せない」をかなり減らせます。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="linter"
+        class="step"
+        data-x="10800"
+        data-y="200"
+        data-z="860"
+        data-rotate="-8"
+        data-rotate-x="-6"
+        data-rotate-y="-30"
+        data-scale="0.92"
+        data-title="SVG 品質チェッカー"
+      >
+        <p class="eyebrow">Point 4</p>
+        <h2><code>check-drawio-svg-overlaps.mjs</code> が核心</h2>
+        <div class="split narrow-gap">
+          <div class="panel table-panel">
+            <h3>検出できる問題</h3>
+            <table class="check-table">
+              <thead>
+                <tr>
+                  <th>チェック項目</th>
+                  <th>内容</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>edge-edge</code></td>
+                  <td>矢印同士が交差していないか</td>
+                </tr>
+                <tr>
+                  <td><code>edge-rect</code></td>
+                  <td>矢印がボックスを貫通していないか</td>
+                </tr>
+                <tr>
+                  <td><code>edge-rect-border</code></td>
+                  <td>矢印が枠線に重なっていないか</td>
+                </tr>
+                <tr>
+                  <td><code>text-overflow(width)</code></td>
+                  <td>横幅オーバー</td>
+                </tr>
+                <tr>
+                  <td><code>text-overflow(height)</code></td>
+                  <td>縦方向オーバー</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="panel tone">
+            <h3>特に重要</h3>
+            <p class="body-text">
+              日本語を含む多言語テキストの折り返し幅を推定して、
+              <strong>テキストはみ出し</strong>を検査できます。
+            </p>
+            <p class="body-text">
+              draw.io でありがちな「見た目では入っていそうなのに、開くとはみ出る」を
+              機械的に拾えるのが強いところです。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="loop"
+        class="step"
+        data-x="12600"
+        data-y="-280"
+        data-z="1520"
+        data-rotate="14"
+        data-rotate-x="10"
+        data-rotate-y="26"
+        data-scale="0.9"
+        data-title="作る→検知→直す"
+      >
+        <p class="eyebrow">Core Value</p>
+        <h2>「作る → 検知 → 直す」のループが回る</h2>
+        <div class="loop-grid">
+          <article class="loop-node node-1">
+            <span>①</span>
+            <strong>生成</strong>
+            <p>AI エージェントが <code>.drawio</code> を作る</p>
+          </article>
+          <div class="loop-connector connector-1">→</div>
+          <article class="loop-node node-2 emphasis">
+            <span>②</span>
+            <strong>検知</strong>
+            <p>リンターが重なりや文字はみ出しを自動チェック</p>
+          </article>
+          <div class="loop-connector connector-2">→</div>
+          <article class="loop-node node-3">
+            <span>③</span>
+            <strong>フィードバック</strong>
+            <p>検知結果をそのまま文章で返す</p>
+          </article>
+
+          <article class="loop-node node-5 final-step">
+            <span>⑤</span>
+            <strong>繰り返す</strong>
+            <p>問題がなくなるまでループを回す</p>
+          </article>
+          <div class="loop-connector connector-3">←</div>
+          <div class="loop-center-note">
+            <span class="pill light">TDD-like</span>
+            <p>図の世界でも「テストして直す」を実現</p>
+          </div>
+          <div class="loop-connector connector-4">←</div>
+          <article class="loop-node node-4">
+            <span>④</span>
+            <strong>修正</strong>
+            <p>エージェントが結果を読んで図を修正</p>
+          </article>
+        </div>
+        <p class="footnote strong">
+          これは図版版の TDD に近い発想です。<br />
+          <strong>AI が自分で描いた図を、自分でダメ出しして、自分で直す。</strong>
+        </p>
+      </section>
+
+      <section
+        id="use-cases"
+        class="step"
+        data-x="14500"
+        data-y="560"
+        data-z="260"
+        data-rotate="-12"
+        data-rotate-y="-24"
+        data-scale="0.96"
+        data-title="使いどころ"
+      >
+        <p class="eyebrow">Use Cases</p>
+        <h2>どんな場面で使えるの？</h2>
+        <div class="cards-grid three">
+          <article class="card">
+            <span class="card-index">01</span>
+            <h3>システム設計図の自動生成</h3>
+            <p>
+              要件を AI に渡すと、<code>.drawio</code> を作るところまで自動化しやすい。
+            </p>
+          </article>
+          <article class="card">
+            <span class="card-index">02</span>
+            <h3>AWS アーキテクチャ図</h3>
+            <p>
+              <code>find_aws_icon.py</code> を使えば、AWS アイコンのスタイル文字列も取り込みやすい。
+            </p>
+          </article>
+          <article class="card">
+            <span class="card-index">03</span>
+            <h3>ドキュメント自動更新</h3>
+            <p>
+              コード変更に追従して、図の再生成・再エクスポートを CI に組み込みやすい。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section
+        id="limits"
+        class="step"
+        data-x="16300"
+        data-y="-120"
+        data-z="-420"
+        data-rotate="7"
+        data-rotate-x="-5"
+        data-rotate-y="18"
+        data-scale="1"
+        data-title="注意点"
+      >
+        <p class="eyebrow">Limitations</p>
+        <h2>注意点・制限事項</h2>
+        <div class="cards-grid two">
+          <article class="card">
+            <h3>初期リリース</h3>
+            <p>
+              <code>v0.1.0</code> は最初の公開版です。今後 API や仕様が変わる可能性があります。
+            </p>
+          </article>
+          <article class="card">
+            <h3>ローカル要件</h3>
+            <p>エクスポートには draw.io デスクトップアプリのインストールが必要です。</p>
+          </article>
+          <article class="card">
+            <h3>リンター判定はヒューリスティック</h3>
+            <p>経験則ベースの判定も含まれるため、誤検知がゼロとは限りません。</p>
+          </article>
+          <article class="card">
+            <h3>文字幅推定は近似</h3>
+            <p>フォント差分次第で、実際の表示と完全一致しないケースがあります。</p>
+          </article>
+        </div>
+      </section>
+
+      <section
+        id="next-steps"
+        class="step"
+        data-x="18100"
+        data-y="320"
+        data-z="980"
+        data-rotate="-10"
+        data-rotate-x="8"
+        data-rotate-y="-24"
+        data-scale="0.92"
+        data-title="次のステップ"
+      >
+        <p class="eyebrow">How To Start</p>
+        <h2>じゃあ、どうすればいいの？</h2>
+        <div class="split">
+          <div class="panel">
+            <h3>導入の入口</h3>
+            <ul class="feature-list compact">
+              <li>Claude Code ならグローバルスキルまたはプロジェクトスキルとして配置</li>
+              <li>OpenAI Codex ならスキルリンクの仕組みで登録</li>
+              <li>具体的な手順は README を参照</li>
+            </ul>
+            <p class="body-text">
+              <a href="https://github.com/Sunwood-ai-labs/draw-io-skill" target="_blank" rel="noreferrer">
+                GitHub: Sunwood-ai-labs/draw-io-skill
+              </a>
+            </p>
+          </div>
+          <div class="panel tone">
+            <h3>まず試すなら</h3>
+            <ol class="ordered-list">
+              <li>リポジトリをクローンする</li>
+              <li><code>npm run check</code> を実行する</li>
+              <li><code>fixtures/basic/</code> でエクスポートとリントを確認する</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="closing"
+        class="step hero closing"
+        data-x="20100"
+        data-y="-220"
+        data-z="1820"
+        data-rotate="18"
+        data-rotate-x="-10"
+        data-rotate-y="30"
+        data-scale="0.88"
+        data-title="まとめ"
+      >
+        <p class="eyebrow">Closing</p>
+        <h2>
+          <code>draw-io-skill</code> は、<br />
+          AI に「図も任せる」ための実践パッケージ
+        </h2>
+        <p class="lead narrow">
+          エクスポート自動化、クロスプラットフォーム対応、SVG 品質チェック、
+          そして <strong>自己修正フィードバックループ</strong>まで揃っている。
+        </p>
+        <div class="cards-grid two compact-grid">
+          <article class="card">
+            <h3>キーメッセージ</h3>
+            <p>
+              「図をコードのように管理する」世界観に、AI エージェントがちゃんと乗れるようになる。
+            </p>
+          </article>
+          <article class="card">
+            <h3>参考リンク</h3>
+            <p><a href="https://github.com/Sunwood-ai-labs/draw-io-skill/releases/tag/v0.1.0" target="_blank" rel="noreferrer">v0.1.0 リリースノート</a></p>
+            <p><a href="https://github.com/jgraph/drawio-mcp" target="_blank" rel="noreferrer">jgraph/drawio-mcp</a></p>
+            <p><a href="https://github.com/softaworks/agent-toolkit" target="_blank" rel="noreferrer">softaworks/agent-toolkit</a></p>
+          </article>
+        </div>
+        <p class="footnote">この記事ベースの情報は 2026年3月14日時点のものです。</p>
+      </section>
+
+      <section
+        id="overview"
+        class="step overview-step"
+        data-x="10050"
+        data-y="80"
+        data-z="0"
+        data-scale="13.8"
+        data-title="全体俯瞰"
+        data-skip-counter="true"
+      ></section>
+    </div>
+
+    <script src="../../node_modules/impress.js/js/impress.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
