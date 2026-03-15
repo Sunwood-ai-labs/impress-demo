@@ -9,6 +9,7 @@
     "start:draw-io-skill-3d": "http-server . -p 4173 -c-1",
     "start:draw-io-skill-3d-readable": "http-server . -p 4173 -c-1",
     "start:draw-io-skill-3d-presentation": "http-server . -p 4173 -c-1",
+    "build:pages": "node scripts/build-pages.mjs",
     "check": "npm run check:slide-text:readable && npm run check:slide-text:presentation && npm run check:slide-space:presentation",
     "check:slide-text": "node scripts/check-slide-text.mjs",
     "check:slide-text:readable": "node scripts/check-slide-text.mjs slide/draw-io-skill-3d-readable/index.html",

@@ -2,6 +2,11 @@
 
 `slide/` 配下にスライドプロジェクトをまとめていくためのリポジトリです。
 
+## 公開ページ
+
+- GitHub Pages: `https://sunwood-ai-labs.github.io/impress-demo/`
+- メイン導線: `https://sunwood-ai-labs.github.io/impress-demo/slide/draw-io-skill-3d-presentation/`
+
 ## 構成
 
 - `slide/draw-io-skill/`
@@ -26,6 +31,12 @@ npm start
 - `http://127.0.0.1:4173/slide/draw-io-skill-3d/`
 - `http://127.0.0.1:4173/slide/draw-io-skill-3d-readable/`
 - `http://127.0.0.1:4173/slide/draw-io-skill-3d-presentation/`
+
+## デプロイ
+
+- GitHub Actions で `main` への push ごとに GitHub Pages へデプロイします
+- 公開用アーティファクトは `npm run build:pages` で `dist-pages/` に出力します
+- Actions ワークフローは `.github/workflows/deploy-pages.yml` にあります
 
 ## メモ
 
