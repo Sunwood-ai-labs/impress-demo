@@ -15,6 +15,7 @@
   --font-display: "M PLUS 1p", "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
   --font-ui: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
   --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  --font-symbol: "Material Symbols Rounded";
   --step-width: 1160px;
   --step-height: 720px;
 }
@@ -264,6 +265,37 @@ p,
   gap: 18px;
 }
 
+.hero-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.icon-tile {
+  position: relative;
+  padding: 16px 16px 14px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.64);
+  border: 1px solid rgba(19, 33, 57, 0.08);
+  box-shadow: 0 12px 24px rgba(18, 29, 46, 0.06);
+}
+
+.icon-tile strong,
+.icon-tile span {
+  display: block;
+}
+
+.icon-tile strong {
+  margin-bottom: 4px;
+  padding-right: 26px;
+  font-size: 0.96rem;
+}
+
+.icon-tile span {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
 .hero-points {
   display: flex;
   gap: 12px;
@@ -342,11 +374,69 @@ p,
 .badge-card,
 .loop-step,
 .signal-band {
+  position: relative;
+  overflow: hidden;
   padding: 20px 22px;
   border-radius: 24px;
   background: rgba(255, 255, 255, 0.66);
   border: 1px solid rgba(19, 33, 57, 0.08);
   box-shadow: 0 14px 28px rgba(18, 29, 46, 0.06);
+}
+
+.card[data-symbol]::before,
+.panel[data-symbol]::before,
+.compare-card[data-symbol]::before,
+.source-card[data-symbol]::before,
+.badge-card[data-symbol]::before,
+.loop-step[data-symbol]::before,
+.signal-band[data-symbol]::before,
+.icon-tile[data-symbol]::before {
+  content: attr(data-symbol);
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-family: var(--font-symbol);
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: normal;
+  color: rgba(12, 122, 128, 0.26);
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 500,
+    "GRAD" 0,
+    "opsz" 24;
+}
+
+.compare-card.before[data-symbol]::before,
+.card.accent-a[data-symbol]::before,
+.loop-step[data-symbol="draw"]::before,
+.loop-step[data-symbol="arrow_forward"]::before,
+.panel[data-symbol="warning"]::before {
+  color: rgba(212, 87, 63, 0.24);
+}
+
+.card.accent-c[data-symbol]::before,
+.loop-step.final-step[data-symbol]::before,
+.panel[data-symbol="rocket_launch"]::before,
+.source-card.final[data-symbol]::before {
+  color: rgba(216, 153, 44, 0.28);
+}
+
+.loop-step[data-symbol]::before {
+  top: 18px;
+  right: 18px;
+  font-size: 30px;
+}
+
+.signal-band[data-symbol] {
+  padding-right: 72px;
+}
+
+.signal-band[data-symbol]::before {
+  top: 50%;
+  right: 22px;
+  transform: translateY(-50%);
+  font-size: 30px;
 }
 
 .card-index {
@@ -383,6 +473,40 @@ p,
 .ordered-list {
   margin: 0;
   padding-left: 1.15em;
+}
+
+.bullet-list,
+.compact-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.bullet-list li,
+.compact-list li {
+  position: relative;
+  padding-left: 1.45em;
+}
+
+.bullet-list li::before,
+.compact-list li::before {
+  content: "check_circle";
+  position: absolute;
+  left: 0;
+  top: 0.06em;
+  font-family: var(--font-symbol);
+  font-size: 1em;
+  line-height: 1;
+  color: var(--accent-b);
+  font-variation-settings:
+    "FILL" 1,
+    "wght" 500,
+    "GRAD" 0,
+    "opsz" 20;
+}
+
+.compact-list li::before {
+  content: "arrow_forward";
+  color: rgba(19, 33, 57, 0.6);
 }
 
 .bullet-list li + li,
@@ -543,6 +667,11 @@ p,
   color: var(--ink-soft);
   text-align: center;
   font-size: 0.96rem;
+}
+
+.ordered-list li::marker {
+  color: var(--accent-a);
+  font-weight: 700;
 }
 
 .closing h2 {

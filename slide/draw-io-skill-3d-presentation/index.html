@@ -17,6 +17,10 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=M+PLUS+1p:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,0,0&icon_names=account_tree,arrow_forward,auto_awesome,build,check_circle,draw,edit_note,fact_check,hub,integration_instructions,rocket_launch,rule,smart_toy,sync,terminal,upload_file,warning&display=block"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body class="impress-not-supported">
@@ -73,6 +77,20 @@
               <span class="pill">draw.io</span>
               <span class="pill">Feedback Loop</span>
             </div>
+            <div class="hero-icon-grid" aria-hidden="true">
+              <div class="icon-tile" data-symbol="draw">
+                <strong>Generate</strong>
+                <span>図をつくる</span>
+              </div>
+              <div class="icon-tile" data-symbol="fact_check">
+                <strong>Check</strong>
+                <span>崩れを見つける</span>
+              </div>
+              <div class="icon-tile" data-symbol="sync">
+                <strong>Fix</strong>
+                <span>自分で直す</span>
+              </div>
+            </div>
           </aside>
         </div>
       </section>
@@ -91,7 +109,7 @@
         <p class="eyebrow">Takeaway</p>
         <h2>今日の要点は 3 つだけ</h2>
         <div class="cards-grid three">
-          <article class="card accent-a">
+          <article class="card accent-a" data-symbol="draw">
             <span class="card-index">01</span>
             <h3>AI が draw.io を扱える</h3>
             <ul class="bullet-list">
@@ -100,7 +118,7 @@
               <li>人手の図修正を減らす</li>
             </ul>
           </article>
-          <article class="card accent-b">
+          <article class="card accent-b" data-symbol="fact_check">
             <span class="card-index">02</span>
             <h3>リンターが目になる</h3>
             <ul class="bullet-list">
@@ -109,7 +127,7 @@
               <li>結果をそのまま返せる</li>
             </ul>
           </article>
-          <article class="card accent-c">
+          <article class="card accent-c" data-symbol="sync">
             <span class="card-index">03</span>
             <h3>自己修正ループが回る</h3>
             <ul class="bullet-list">
@@ -136,7 +154,7 @@
         <p class="eyebrow">Why It Matters</p>
         <h2>図作成のつらさを AI に肩代わりさせる</h2>
         <div class="compare-grid">
-          <article class="compare-card before">
+          <article class="compare-card before" data-symbol="build">
             <span class="mini-label">Before</span>
             <ul class="bullet-list">
               <li>draw.io を毎回手で開く</li>
@@ -144,7 +162,7 @@
               <li>仕上がり確認も目視頼み</li>
             </ul>
           </article>
-          <article class="compare-card after">
+          <article class="compare-card after" data-symbol="smart_toy">
             <span class="mini-label">After</span>
             <ul class="bullet-list">
               <li>AI が図を生成</li>
@@ -153,7 +171,7 @@
             </ul>
           </article>
         </div>
-        <div class="signal-band">
+        <div class="signal-band" data-symbol="auto_awesome">
           <strong>一言でいうと</strong>
           <span>draw.io を使うための「取扱説明書 + ツールセット」</span>
         </div>
@@ -174,7 +192,7 @@
         <p class="eyebrow">Point 1</p>
         <h2>土台は Skill の仕組み</h2>
         <div class="split">
-          <div class="panel">
+          <div class="panel" data-symbol="rule">
             <h3>Skill = 指示書</h3>
             <ul class="bullet-list">
               <li><code>SKILL.md</code> を読む</li>
@@ -182,7 +200,7 @@
               <li>同じ作業を再利用できる</li>
             </ul>
           </div>
-          <div class="panel tone">
+          <div class="panel tone" data-symbol="terminal">
             <h3><code>draw-io-skill</code> の中身</h3>
             <ul class="bullet-list">
               <li>指示書</li>
@@ -208,7 +226,7 @@
         <p class="eyebrow">Point 2</p>
         <h2>2 つの流儀を統合して実用化</h2>
         <div class="merge-board">
-          <article class="source-card">
+          <article class="source-card" data-symbol="draw">
             <span class="pill light">参照元 A</span>
             <h3><code>jgraph/drawio-mcp</code></h3>
             <ul class="compact-list">
@@ -217,7 +235,7 @@
             </ul>
           </article>
           <div class="merge-plus">+</div>
-          <article class="source-card">
+          <article class="source-card" data-symbol="account_tree">
             <span class="pill light">参照元 B</span>
             <h3><code>agent-toolkit</code></h3>
             <ul class="compact-list">
@@ -226,7 +244,7 @@
             </ul>
           </article>
           <div class="merge-arrow">→</div>
-          <article class="source-card final">
+          <article class="source-card final" data-symbol="integration_instructions">
             <span class="pill">結果</span>
             <h3>実用的な AI 図解フロー</h3>
             <ul class="compact-list">
@@ -253,7 +271,7 @@
         <p class="eyebrow">Point 3</p>
         <h2><code>export-drawio.mjs</code> は出力の共通窓口</h2>
         <div class="split">
-          <div class="panel">
+          <div class="panel" data-symbol="upload_file">
             <ul class="bullet-list">
               <li>Windows / macOS / Linux で共通</li>
               <li><code>--output</code> の拡張子で形式判定</li>
@@ -261,7 +279,7 @@
               <li>PNG は透過背景 + 2 倍解像度が既定</li>
             </ul>
           </div>
-          <div class="panel tone">
+          <div class="panel tone" data-symbol="edit_note">
             <h3>発表で刺さるポイント</h3>
             <ul class="bullet-list">
               <li>画像化しても再編集しやすい</li>
@@ -287,28 +305,28 @@
         <p class="eyebrow">Point 4</p>
         <h2>リンターは何を見ているか</h2>
         <div class="badge-grid">
-          <article class="badge-card">
+          <article class="badge-card" data-symbol="rule">
             <span class="badge-code"><code>edge-edge</code></span>
             <h3>矢印の交差</h3>
             <ul class="compact-list">
               <li>線同士の見づらさを検知</li>
             </ul>
           </article>
-          <article class="badge-card">
+          <article class="badge-card" data-symbol="rule">
             <span class="badge-code"><code>edge-rect</code></span>
             <h3>ボックス貫通</h3>
             <ul class="compact-list">
               <li>線が箱を突き抜ける崩れを検知</li>
             </ul>
           </article>
-          <article class="badge-card">
+          <article class="badge-card" data-symbol="rule">
             <span class="badge-code"><code>edge-rect-border</code></span>
             <h3>枠線重なり</h3>
             <ul class="compact-list">
               <li>境界が読みにくい状態を検知</li>
             </ul>
           </article>
-          <article class="badge-card emphasis">
+          <article class="badge-card emphasis" data-symbol="fact_check">
             <span class="badge-code"><code>text-overflow</code></span>
             <h3>文字はみ出し</h3>
             <ul class="compact-list">
@@ -335,7 +353,7 @@
         <p class="eyebrow">Core</p>
         <h2>価値の本体は自己修正ループ</h2>
         <div class="loop-strip">
-          <article class="loop-step">
+          <article class="loop-step" data-symbol="draw">
             <span>1</span>
             <strong>生成</strong>
             <ul class="compact-list">
@@ -343,7 +361,7 @@
             </ul>
           </article>
           <div class="flow-arrow">→</div>
-          <article class="loop-step emphasis">
+          <article class="loop-step emphasis" data-symbol="fact_check">
             <span>2</span>
             <strong>検知</strong>
             <ul class="compact-list">
@@ -351,7 +369,7 @@
             </ul>
           </article>
           <div class="flow-arrow">→</div>
-          <article class="loop-step">
+          <article class="loop-step" data-symbol="arrow_forward">
             <span>3</span>
             <strong>返す</strong>
             <ul class="compact-list">
@@ -359,7 +377,7 @@
             </ul>
           </article>
           <div class="flow-arrow">→</div>
-          <article class="loop-step">
+          <article class="loop-step" data-symbol="edit_note">
             <span>4</span>
             <strong>修正</strong>
             <ul class="compact-list">
@@ -367,7 +385,7 @@
             </ul>
           </article>
           <div class="flow-arrow">↺</div>
-          <article class="loop-step final-step">
+          <article class="loop-step final-step" data-symbol="sync">
             <span>5</span>
             <strong>再実行</strong>
             <ul class="compact-list">
@@ -375,7 +393,7 @@
             </ul>
           </article>
         </div>
-        <div class="signal-band highlight">
+        <div class="signal-band highlight" data-symbol="auto_awesome">
           <strong>TDD に近い</strong>
           <span>図でも「テストして直す」を回せる</span>
         </div>
@@ -395,7 +413,7 @@
         <p class="eyebrow">Use Cases</p>
         <h2>使いどころはこの 3 パターン</h2>
         <div class="cards-grid three">
-          <article class="card">
+          <article class="card" data-symbol="draw">
             <span class="card-index">01</span>
             <h3>設計図の自動生成</h3>
             <ul class="bullet-list">
@@ -403,7 +421,7 @@
               <li>たたき台づくりを高速化</li>
             </ul>
           </article>
-          <article class="card">
+          <article class="card" data-symbol="account_tree">
             <span class="card-index">02</span>
             <h3>AWS 図の生成</h3>
             <ul class="bullet-list">
@@ -411,7 +429,7 @@
               <li>アイコン流用を楽にする</li>
             </ul>
           </article>
-          <article class="card">
+          <article class="card" data-symbol="sync">
             <span class="card-index">03</span>
             <h3>CI 連携</h3>
             <ul class="bullet-list">
@@ -437,7 +455,7 @@
         <p class="eyebrow">Limits</p>
         <h2>注意点は先に共有しておく</h2>
         <div class="split">
-          <div class="panel">
+          <div class="panel" data-symbol="warning">
             <h3>制限</h3>
             <ul class="bullet-list">
               <li><code>v0.1.0</code> は初期リリース</li>
@@ -446,7 +464,7 @@
               <li>文字幅推定は近似計算</li>
             </ul>
           </div>
-          <div class="panel tone">
+          <div class="panel tone" data-symbol="build">
             <h3>前提環境</h3>
             <ul class="bullet-list">
               <li>draw.io デスクトップアプリが必要</li>
@@ -472,7 +490,7 @@
         <p class="eyebrow">How To Start</p>
         <h2>まずは小さく試すのがおすすめ</h2>
         <div class="split">
-          <div class="panel">
+          <div class="panel" data-symbol="smart_toy">
             <h3>導入先</h3>
             <ul class="bullet-list">
               <li>Claude Code に登録</li>
@@ -480,7 +498,7 @@
               <li>README の手順を参照</li>
             </ul>
           </div>
-          <div class="panel tone">
+          <div class="panel tone" data-symbol="rocket_launch">
             <h3>最初の 3 ステップ</h3>
             <ol class="ordered-list">
               <li>リポジトリを clone</li>
@@ -506,7 +524,7 @@
         <p class="eyebrow">Closing</p>
         <h2>AI に「図も任せる」ための実践パッケージ</h2>
         <div class="cards-grid three closing-grid">
-          <article class="card">
+          <article class="card" data-symbol="check_circle">
             <h3>ポイント</h3>
             <ul class="bullet-list">
               <li>生成できる</li>
@@ -514,7 +532,7 @@
               <li>自分で直せる</li>
             </ul>
           </article>
-          <article class="card">
+          <article class="card" data-symbol="auto_awesome">
             <h3>価値</h3>
             <ul class="bullet-list">
               <li>図をコードのように扱える</li>
@@ -522,7 +540,7 @@
               <li>CI にも載せやすい</li>
             </ul>
           </article>
-          <article class="card">
+          <article class="card" data-symbol="hub">
             <h3>参照先</h3>
             <ul class="bullet-list">
               <li><a href="https://github.com/Sunwood-ai-labs/draw-io-skill" target="_blank" rel="noreferrer">Repository</a></li>
