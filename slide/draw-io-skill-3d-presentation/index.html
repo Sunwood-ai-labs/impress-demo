@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>draw-io-skill v0.1.0 3D Presentation Slide</title>
+    <meta
+      name="description"
+      content="draw-io-skill v0.1.0 を発表向けに短い bullet と図解中心で再構成した impress.js スライド"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=M+PLUS+1p:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="impress-not-supported">
+    <div class="fallback-message">
+      <p>このスライドは <strong>impress.js</strong> 対応ブラウザ向けです。</p>
+      <p>最新版の Chrome / Edge / Safari で開いてください。</p>
+    </div>
+
+    <div id="hud" aria-hidden="true">
+      <div class="hud-chip">
+        <span class="hud-label">SECTION</span>
+        <strong data-role="current-title">タイトル</strong>
+      </div>
+      <div class="hud-chip hud-chip-right">
+        <strong data-role="counter">1 / 12</strong>
+        <span class="hud-label">Space / ← → / Tab</span>
+      </div>
+    </div>
+
+    <div id="impress" data-transition-duration="1500" data-perspective="1950">
+      <section
+        id="cover"
+        class="step hero"
+        data-x="0"
+        data-y="0"
+        data-z="0"
+        data-rotate-x="0"
+        data-rotate-y="0"
+        data-scale="1"
+        data-title="タイトル"
+      >
+        <div class="hero-grid">
+          <div>
+            <p class="eyebrow">Presentation-first / draw-io-skill v0.1.0</p>
+            <h1>AI が図を自分で直せる</h1>
+            <p class="lead"><code>draw-io-skill</code> を発表向けに短く整理した 3D deck</p>
+            <ul class="hero-points">
+              <li>作る</li>
+              <li>検知する</li>
+              <li>自分で直す</li>
+            </ul>
+          </div>
+          <aside class="hero-stack">
+            <div class="callout warning">
+              <span class="callout-title">前提</span>
+              <ul class="compact-list">
+                <li>2026年3月時点の情報</li>
+                <li><code>v0.1.0</code> は初公開版</li>
+                <li>今後の破壊的変更に注意</li>
+              </ul>
+            </div>
+            <div class="meta-pills">
+              <span class="pill">AI Agent</span>
+              <span class="pill">draw.io</span>
+              <span class="pill">Feedback Loop</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section
+        id="takeaway"
+        class="step"
+        data-x="1720"
+        data-y="-300"
+        data-z="-480"
+        data-rotate="5"
+        data-rotate-y="18"
+        data-scale="0.92"
+        data-title="今日の要点"
+      >
+        <p class="eyebrow">Takeaway</p>
+        <h2>今日の要点は 3 つだけ</h2>
+        <div class="cards-grid three">
+          <article class="card accent-a">
+            <span class="card-index">01</span>
+            <h3>AI が draw.io を扱える</h3>
+            <ul class="bullet-list">
+              <li><code>.drawio</code> を作成</li>
+              <li>出力も自動化</li>
+              <li>人手の図修正を減らす</li>
+            </ul>
+          </article>
+          <article class="card accent-b">
+            <span class="card-index">02</span>
+            <h3>リンターが目になる</h3>
+            <ul class="bullet-list">
+              <li>重なりを検知</li>
+              <li>文字はみ出しを検知</li>
+              <li>結果をそのまま返せる</li>
+            </ul>
+          </article>
+          <article class="card accent-c">
+            <span class="card-index">03</span>
+            <h3>自己修正ループが回る</h3>
+            <ul class="bullet-list">
+              <li>生成する</li>
+              <li>ダメ出しを受ける</li>
+              <li>自分で直して再挑戦</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section
+        id="problem"
+        class="step"
+        data-x="3500"
+        data-y="260"
+        data-z="360"
+        data-rotate="-6"
+        data-rotate-x="3"
+        data-rotate-y="-11"
+        data-scale="0.92"
+        data-title="何がうれしいか"
+      >
+        <p class="eyebrow">Why It Matters</p>
+        <h2>図作成のつらさを AI に肩代わりさせる</h2>
+        <div class="compare-grid">
+          <article class="compare-card before">
+            <span class="mini-label">Before</span>
+            <ul class="bullet-list">
+              <li>draw.io を毎回手で開く</li>
+              <li>配置調整が地味に重い</li>
+              <li>仕上がり確認も目視頼み</li>
+            </ul>
+          </article>
+          <article class="compare-card after">
+            <span class="mini-label">After</span>
+            <ul class="bullet-list">
+              <li>AI が図を生成</li>
+              <li>AI が自分で検査</li>
+              <li>AI が修正まで回す</li>
+            </ul>
+          </article>
+        </div>
+        <div class="signal-band">
+          <strong>一言でいうと</strong>
+          <span>draw.io を使うための「取扱説明書 + ツールセット」</span>
+        </div>
+      </section>
+
+      <section
+        id="skill"
+        class="step"
+        data-x="5300"
+        data-y="-150"
+        data-z="1080"
+        data-rotate="9"
+        data-rotate-x="-8"
+        data-rotate-y="24"
+        data-scale="0.92"
+        data-title="Skill の仕組み"
+      >
+        <p class="eyebrow">Point 1</p>
+        <h2>土台は Skill の仕組み</h2>
+        <div class="split">
+          <div class="panel">
+            <h3>Skill = 指示書</h3>
+            <ul class="bullet-list">
+              <li><code>SKILL.md</code> を読む</li>
+              <li>正しい手順を共有する</li>
+              <li>同じ作業を再利用できる</li>
+            </ul>
+          </div>
+          <div class="panel tone">
+            <h3><code>draw-io-skill</code> の中身</h3>
+            <ul class="bullet-list">
+              <li>指示書</li>
+              <li>エクスポート用スクリプト</li>
+              <li>品質チェック用スクリプト</li>
+              <li>サンプル fixture</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="integration"
+        class="step"
+        data-x="7100"
+        data-y="520"
+        data-z="180"
+        data-rotate="-6"
+        data-rotate-y="-14"
+        data-scale="0.9"
+        data-title="統合ワークフロー"
+      >
+        <p class="eyebrow">Point 2</p>
+        <h2>2 つの流儀を統合して実用化</h2>
+        <div class="merge-board">
+          <article class="source-card">
+            <span class="pill light">参照元 A</span>
+            <h3><code>jgraph/drawio-mcp</code></h3>
+            <ul class="compact-list">
+              <li>ネイティブ操作</li>
+              <li>エクスポートの慣習</li>
+            </ul>
+          </article>
+          <div class="merge-plus">+</div>
+          <article class="source-card">
+            <span class="pill light">参照元 B</span>
+            <h3><code>agent-toolkit</code></h3>
+            <ul class="compact-list">
+              <li>XML レイアウト指針</li>
+              <li>構造化された編集フロー</li>
+            </ul>
+          </article>
+          <div class="merge-arrow">→</div>
+          <article class="source-card final">
+            <span class="pill">結果</span>
+            <h3>実用的な AI 図解フロー</h3>
+            <ul class="compact-list">
+              <li>生成</li>
+              <li>出力</li>
+              <li>検査</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section
+        id="export"
+        class="step"
+        data-x="8850"
+        data-y="-440"
+        data-z="-760"
+        data-rotate="7"
+        data-rotate-x="4"
+        data-rotate-y="14"
+        data-scale="0.9"
+        data-title="エクスポート"
+      >
+        <p class="eyebrow">Point 3</p>
+        <h2><code>export-drawio.mjs</code> は出力の共通窓口</h2>
+        <div class="split">
+          <div class="panel">
+            <ul class="bullet-list">
+              <li>Windows / macOS / Linux で共通</li>
+              <li><code>--output</code> の拡張子で形式判定</li>
+              <li>PNG / SVG / PDF / JPG に対応</li>
+              <li>PNG は透過背景 + 2 倍解像度が既定</li>
+            </ul>
+          </div>
+          <div class="panel tone">
+            <h3>発表で刺さるポイント</h3>
+            <ul class="bullet-list">
+              <li>画像化しても再編集しやすい</li>
+              <li>元 XML を埋め込める</li>
+              <li>「書き出したら終わり」になりにくい</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="checks"
+        class="step"
+        data-x="10650"
+        data-y="200"
+        data-z="820"
+        data-rotate="-8"
+        data-rotate-x="-6"
+        data-rotate-y="-28"
+        data-scale="0.92"
+        data-title="何を検知するか"
+      >
+        <p class="eyebrow">Point 4</p>
+        <h2>リンターは何を見ているか</h2>
+        <div class="badge-grid">
+          <article class="badge-card">
+            <span class="badge-code"><code>edge-edge</code></span>
+            <h3>矢印の交差</h3>
+            <ul class="compact-list">
+              <li>線同士の見づらさを検知</li>
+            </ul>
+          </article>
+          <article class="badge-card">
+            <span class="badge-code"><code>edge-rect</code></span>
+            <h3>ボックス貫通</h3>
+            <ul class="compact-list">
+              <li>線が箱を突き抜ける崩れを検知</li>
+            </ul>
+          </article>
+          <article class="badge-card">
+            <span class="badge-code"><code>edge-rect-border</code></span>
+            <h3>枠線重なり</h3>
+            <ul class="compact-list">
+              <li>境界が読みにくい状態を検知</li>
+            </ul>
+          </article>
+          <article class="badge-card emphasis">
+            <span class="badge-code"><code>text-overflow</code></span>
+            <h3>文字はみ出し</h3>
+            <ul class="compact-list">
+              <li>横幅</li>
+              <li>高さ</li>
+              <li>日本語を含む推定に対応</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section
+        id="loop"
+        class="step"
+        data-x="12450"
+        data-y="-260"
+        data-z="1480"
+        data-rotate="14"
+        data-rotate-x="10"
+        data-rotate-y="25"
+        data-scale="0.9"
+        data-title="自己修正ループ"
+      >
+        <p class="eyebrow">Core</p>
+        <h2>価値の本体は自己修正ループ</h2>
+        <div class="loop-strip">
+          <article class="loop-step">
+            <span>1</span>
+            <strong>生成</strong>
+            <ul class="compact-list">
+              <li>AI が図を作る</li>
+            </ul>
+          </article>
+          <div class="flow-arrow">→</div>
+          <article class="loop-step emphasis">
+            <span>2</span>
+            <strong>検知</strong>
+            <ul class="compact-list">
+              <li>リンターが崩れを拾う</li>
+            </ul>
+          </article>
+          <div class="flow-arrow">→</div>
+          <article class="loop-step">
+            <span>3</span>
+            <strong>返す</strong>
+            <ul class="compact-list">
+              <li>結果を文章で返す</li>
+            </ul>
+          </article>
+          <div class="flow-arrow">→</div>
+          <article class="loop-step">
+            <span>4</span>
+            <strong>修正</strong>
+            <ul class="compact-list">
+              <li>AI が自分で直す</li>
+            </ul>
+          </article>
+          <div class="flow-arrow">↺</div>
+          <article class="loop-step final-step">
+            <span>5</span>
+            <strong>再実行</strong>
+            <ul class="compact-list">
+              <li>問題が消えるまで回す</li>
+            </ul>
+          </article>
+        </div>
+        <div class="signal-band highlight">
+          <strong>TDD に近い</strong>
+          <span>図でも「テストして直す」を回せる</span>
+        </div>
+      </section>
+
+      <section
+        id="usecases"
+        class="step"
+        data-x="14350"
+        data-y="560"
+        data-z="260"
+        data-rotate="-8"
+        data-rotate-y="-10"
+        data-scale="0.9"
+        data-title="使いどころ"
+      >
+        <p class="eyebrow">Use Cases</p>
+        <h2>使いどころはこの 3 パターン</h2>
+        <div class="cards-grid three">
+          <article class="card">
+            <span class="card-index">01</span>
+            <h3>設計図の自動生成</h3>
+            <ul class="bullet-list">
+              <li>要件から図を起こす</li>
+              <li>たたき台づくりを高速化</li>
+            </ul>
+          </article>
+          <article class="card">
+            <span class="card-index">02</span>
+            <h3>AWS 図の生成</h3>
+            <ul class="bullet-list">
+              <li><code>find_aws_icon.py</code> を利用</li>
+              <li>アイコン流用を楽にする</li>
+            </ul>
+          </article>
+          <article class="card">
+            <span class="card-index">03</span>
+            <h3>CI 連携</h3>
+            <ul class="bullet-list">
+              <li>コード変更で図も再生成</li>
+              <li>ドキュメント更新を追従</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section
+        id="limits"
+        class="step"
+        data-x="16150"
+        data-y="-120"
+        data-z="-420"
+        data-rotate="7"
+        data-rotate-x="-5"
+        data-rotate-y="18"
+        data-scale="0.96"
+        data-title="注意点"
+      >
+        <p class="eyebrow">Limits</p>
+        <h2>注意点は先に共有しておく</h2>
+        <div class="split">
+          <div class="panel">
+            <h3>制限</h3>
+            <ul class="bullet-list">
+              <li><code>v0.1.0</code> は初期リリース</li>
+              <li>API や仕様は今後変わりうる</li>
+              <li>判定は一部ヒューリスティック</li>
+              <li>文字幅推定は近似計算</li>
+            </ul>
+          </div>
+          <div class="panel tone">
+            <h3>前提環境</h3>
+            <ul class="bullet-list">
+              <li>draw.io デスクトップアプリが必要</li>
+              <li>ローカルで export を実行</li>
+              <li>誤検知ゼロではない</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="start"
+        class="step"
+        data-x="17950"
+        data-y="340"
+        data-z="920"
+        data-rotate="-10"
+        data-rotate-x="8"
+        data-rotate-y="-24"
+        data-scale="0.92"
+        data-title="始め方"
+      >
+        <p class="eyebrow">How To Start</p>
+        <h2>まずは小さく試すのがおすすめ</h2>
+        <div class="split">
+          <div class="panel">
+            <h3>導入先</h3>
+            <ul class="bullet-list">
+              <li>Claude Code に登録</li>
+              <li>OpenAI Codex に登録</li>
+              <li>README の手順を参照</li>
+            </ul>
+          </div>
+          <div class="panel tone">
+            <h3>最初の 3 ステップ</h3>
+            <ol class="ordered-list">
+              <li>リポジトリを clone</li>
+              <li><code>npm run check</code> を実行</li>
+              <li><code>fixtures/basic/</code> を触る</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="closing"
+        class="step hero closing"
+        data-x="19950"
+        data-y="-220"
+        data-z="1760"
+        data-rotate="18"
+        data-rotate-x="-10"
+        data-rotate-y="30"
+        data-scale="0.88"
+        data-title="まとめ"
+      >
+        <p class="eyebrow">Closing</p>
+        <h2>AI に「図も任せる」ための実践パッケージ</h2>
+        <div class="cards-grid three closing-grid">
+          <article class="card">
+            <h3>ポイント</h3>
+            <ul class="bullet-list">
+              <li>生成できる</li>
+              <li>検知できる</li>
+              <li>自分で直せる</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>価値</h3>
+            <ul class="bullet-list">
+              <li>図をコードのように扱える</li>
+              <li>レビュー負荷を下げやすい</li>
+              <li>CI にも載せやすい</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>参照先</h3>
+            <ul class="bullet-list">
+              <li><a href="https://github.com/Sunwood-ai-labs/draw-io-skill" target="_blank" rel="noreferrer">Repository</a></li>
+              <li><a href="https://github.com/Sunwood-ai-labs/draw-io-skill/releases/tag/v0.1.0" target="_blank" rel="noreferrer">Release Note</a></li>
+              <li><a href="https://github.com/jgraph/drawio-mcp" target="_blank" rel="noreferrer">drawio-mcp</a></li>
+            </ul>
+          </article>
+        </div>
+        <p class="footnote">発表向けに情報量を圧縮した bullet-first 版です。</p>
+      </section>
+
+      <section
+        id="overview"
+        class="step overview-step"
+        data-x="9975"
+        data-y="90"
+        data-z="0"
+        data-scale="13.6"
+        data-title="全体俯瞰"
+        data-skip-counter="true"
+      ></section>
+    </div>
+
+    <script src="../../node_modules/impress.js/js/impress.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

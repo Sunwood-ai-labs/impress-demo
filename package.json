@@ -8,9 +8,11 @@
     "start:draw-io-skill": "http-server . -p 4173 -c-1",
     "start:draw-io-skill-3d": "http-server . -p 4173 -c-1",
     "start:draw-io-skill-3d-readable": "http-server . -p 4173 -c-1",
-    "check": "npm run check:slide-text:readable",
+    "start:draw-io-skill-3d-presentation": "http-server . -p 4173 -c-1",
+    "check": "npm run check:slide-text:readable && npm run check:slide-text:presentation",
     "check:slide-text": "node scripts/check-slide-text.mjs",
-    "check:slide-text:readable": "node scripts/check-slide-text.mjs slide/draw-io-skill-3d-readable/index.html"
+    "check:slide-text:readable": "node scripts/check-slide-text.mjs slide/draw-io-skill-3d-readable/index.html",
+    "check:slide-text:presentation": "node scripts/check-slide-text.mjs --preset presentation slide/draw-io-skill-3d-presentation/index.html"
   },
   "dependencies": {
     "impress.js": "^1.1.0"

@@ -1,23 +1,81 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const thresholds = {
-  h1: 34,
-  h2: 30,
-  h3: 26,
-  p: 72,
-  li: 66,
-  td: 36,
-  blocksPerStep: 18,
-  bodyCharsPerStep: 560,
-  segment: 30,
-  h1Br: 2,
-  otherBr: 1,
+const presets = {
+  readable: {
+    h1: 34,
+    h2: 30,
+    h3: 26,
+    p: 72,
+    li: 66,
+    td: 36,
+    blocksPerStep: 18,
+    bodyCharsPerStep: 560,
+    segment: 30,
+    h1Br: 2,
+    otherBr: 1,
+    maxParagraphsPerStep: 8,
+    maxParagraphCharsPerStep: 260,
+    maxListItems: 6,
+    disallowTables: false,
+    requireLists: false,
+    allowNoListIds: ["cover", "overview", "closing"],
+  },
+  presentation: {
+    h1: 30,
+    h2: 26,
+    h3: 20,
+    p: 56,
+    li: 28,
+    td: 24,
+    blocksPerStep: 12,
+    bodyCharsPerStep: 260,
+    segment: 22,
+    h1Br: 1,
+    otherBr: 0,
+    maxParagraphsPerStep: 3,
+    maxParagraphCharsPerStep: 120,
+    maxListItems: 4,
+    disallowTables: true,
+    requireLists: true,
+    allowNoListIds: ["cover", "overview", "integration", "closing"],
+  },
 };
 
 const rootDir = process.cwd();
 const slideDir = path.join(rootDir, "slide");
-const cliTargets = process.argv.slice(2);
+
+const parseArgs = (argv) => {
+  const targets = [];
+  let preset = "readable";
+
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+
+    if (arg === "--preset") {
+      preset = argv[index + 1] || preset;
+      index += 1;
+      continue;
+    }
+
+    if (arg.startsWith("--preset=")) {
+      preset = arg.slice("--preset=".length) || preset;
+      continue;
+    }
+
+    targets.push(arg);
+  }
+
+  return { preset, targets };
+};
+
+const { preset: presetName, targets: cliTargets } = parseArgs(process.argv.slice(2));
+const thresholds = presets[presetName];
+
+if (!thresholds) {
+  console.error(`Unknown preset: ${presetName}`);
+  process.exit(1);
+}
 
 const decodeEntities = (value) =>
   value
@@ -40,11 +98,10 @@ const stripHtml = (value) =>
 
 const countChars = (value) => [...value].length;
 
-const longestSegment = (value) => {
-  return value
-    .split(/[、。．，,\s()（）「」『』【】［］・/|]+/u)
+const longestSegment = (value) =>
+  value
+    .split(/[、。．，,\s()（）「」『』【】［］・/|:：]+/u)
     .reduce((max, part) => Math.max(max, countChars(part)), 0);
-};
 
 const collectDefaultTargets = (dir) => {
   if (!fs.existsSync(dir)) {
@@ -83,8 +140,9 @@ for (const relativeTarget of targets) {
     const contentMatches = [
       ...section.matchAll(/<(h1|h2|h3|p|li|td)[^>]*>([\s\S]*?)<\/\1>/g),
     ];
-
+    const listMatches = [...section.matchAll(/<(ul|ol)\b[\s\S]*?<\/\1>/g)];
     const bodyBlocks = [];
+    const paragraphTexts = [];
 
     for (const [, tag, rawInner] of contentMatches) {
       const text = stripHtml(rawInner);
@@ -96,15 +154,17 @@ for (const relativeTarget of targets) {
         bodyBlocks.push(text);
       }
 
+      if (tag === "p") {
+        paragraphTexts.push(text);
+      }
+
       const maxLength = thresholds[tag];
       const charCount = countChars(text);
       const brCount = (rawInner.match(/<br\s*\/?>/gi) || []).length;
       const segmentLength = longestSegment(text);
 
       if (maxLength && charCount > maxLength) {
-        targetWarnings.push(
-          `[${id}] ${tag} length ${charCount} > ${maxLength}: ${text}`
-        );
+        targetWarnings.push(`[${id}] ${tag} length ${charCount} > ${maxLength}: ${text}`);
       }
 
       if (segmentLength > thresholds.segment) {
@@ -122,6 +182,7 @@ for (const relativeTarget of targets) {
     }
 
     const bodyChars = bodyBlocks.reduce((sum, text) => sum + countChars(text), 0);
+    const paragraphChars = paragraphTexts.reduce((sum, text) => sum + countChars(text), 0);
 
     if (bodyBlocks.length > thresholds.blocksPerStep) {
       targetWarnings.push(
@@ -134,13 +195,46 @@ for (const relativeTarget of targets) {
         `[${id}] body text chars ${bodyChars} > ${thresholds.bodyCharsPerStep} (${title})`
       );
     }
+
+    if (paragraphTexts.length > thresholds.maxParagraphsPerStep) {
+      targetWarnings.push(
+        `[${id}] paragraph count ${paragraphTexts.length} > ${thresholds.maxParagraphsPerStep} (${title})`
+      );
+    }
+
+    if (paragraphChars > thresholds.maxParagraphCharsPerStep) {
+      targetWarnings.push(
+        `[${id}] paragraph chars ${paragraphChars} > ${thresholds.maxParagraphCharsPerStep} (${title})`
+      );
+    }
+
+    if (thresholds.disallowTables && /<table\b/i.test(section)) {
+      targetWarnings.push(`[${id}] table markup is discouraged in ${presetName} preset (${title})`);
+    }
+
+    if (
+      thresholds.requireLists &&
+      !thresholds.allowNoListIds.includes(id) &&
+      listMatches.length === 0
+    ) {
+      targetWarnings.push(`[${id}] no bullet list found (${title})`);
+    }
+
+    for (const listMatch of listMatches) {
+      const listItemCount = [...listMatch[0].matchAll(/<li\b/gi)].length;
+      if (listItemCount > thresholds.maxListItems) {
+        targetWarnings.push(
+          `[${id}] list items ${listItemCount} > ${thresholds.maxListItems} (${title})`
+        );
+      }
+    }
   }
 
   if (targetWarnings.length === 0) {
-    console.log(`PASS ${relativeTarget}`);
+    console.log(`PASS ${relativeTarget} (${presetName})`);
   } else {
     warningCount += targetWarnings.length;
-    console.log(`WARN ${relativeTarget}`);
+    console.log(`WARN ${relativeTarget} (${presetName})`);
     for (const warning of targetWarnings) {
       console.log(`  - ${warning}`);
     }
