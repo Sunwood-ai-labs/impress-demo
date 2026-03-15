@@ -7,7 +7,10 @@
     "start": "http-server . -p 4173 -c-1",
     "start:draw-io-skill": "http-server . -p 4173 -c-1",
     "start:draw-io-skill-3d": "http-server . -p 4173 -c-1",
-    "check": "node -e \"console.log('Static slide deck: no automated checks configured.')\""
+    "start:draw-io-skill-3d-readable": "http-server . -p 4173 -c-1",
+    "check": "npm run check:slide-text:readable",
+    "check:slide-text": "node scripts/check-slide-text.mjs",
+    "check:slide-text:readable": "node scripts/check-slide-text.mjs slide/draw-io-skill-3d-readable/index.html"
   },
   "dependencies": {
     "impress.js": "^1.1.0"
