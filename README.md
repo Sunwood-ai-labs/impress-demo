@@ -33,3 +33,5 @@ npm start
 - スライドごとの説明は各プロジェクト配下の `README.md` に置きます
 - テキストの静的チェックは `npm run check:slide-text:readable` で実行できます
 - 発表向けデッキのチェックは `npm run check:slide-text:presentation` で実行できます
+- 発表向けデッキの余白チェックは `npm run check:slide-space:presentation` で実行できます
+  - 上に寄りすぎて下半分が空くレイアウトも検知します

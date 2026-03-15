@@ -17,6 +17,7 @@ npm start
 
 ```bash
 npm run check:slide-text:presentation
+npm run check:slide-space:presentation
 ```
 
 ## 方針
@@ -24,3 +25,5 @@ npm run check:slide-text:presentation
 - 1スライド1メッセージ
 - 長文段落より短い bullet を優先
 - 発表者が話すための視覚的な骨組みに寄せる
+- 余白が偏りすぎていないかもヒューリスティックで検査する
+- 特に「上に詰まりすぎて下半分が空く」レイアウトを検知する
